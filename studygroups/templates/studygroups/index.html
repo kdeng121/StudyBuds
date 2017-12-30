@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Francois+One">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed">
+<head>
+<style>
+body  {
+    background-image: url("https://image.ibb.co/j5BYFG/background.jpg");
+}
+
+.button {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #79cacd;
+  border: none;
+  color: #000000;
+  text-align: center;
+  font-size: 25px;
+  padding: 20px;
+  width: 325px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: Francois One;
+  opacity: .75;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 18px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+
+
+input[type=text] {
+    width: 150px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 5px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 30%;
+}
+
+
+#customers {
+    font-family: "Encode Sans Condensed", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 5px;
+   //background-color: #FFFFFF;
+}
+
+#customers tr:nth-child(even){background-color: #FFFFFF;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 6px;
+    padding-bottom: 0px;
+    text-align: center;
+    background-color: #2867ce;
+    color: white;
+    font-family: Barlow Condensed;
+    font-size: 18px;
+    
+}
+
+</style>
+</head>
+<body>
+
+<a href="{% url 'index' %}">
+  <img img style="border-radius: 10px; margin-top: 15px; margin-right: 20px; border-style: solid; border-color: #000000;" src="https://image.ibb.co/bynZNw/logo5.png">
+</a>
+
+<div style="position:absolute; top:0; right:0; margin-top: 15px; margin-right: 20px;">
+<form action="{% url 'create' %}">
+    <button class="button" style="vertical-align:middle"><span>create a study group now</span></button>
+</form>
+</div>
+
+<div align="center" style="margin-bottom:5px">
+<form id="searchform" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search by Subject Info">
+      <button type="submit">Search</button>
+</form>
+</div>
+
+<div align="center">
+<form id="searchform" action="{% url 'searchStudent' %}" method="get" accept-charset="utf-8">
+      <input class="searchfield" id="searchbox" name="q2" type="text" placeholder="Search by Student Name">
+      <button type="submit">Search</button>
+</form>
+</div>
+
+
+<table style="margin-top: 20px;" id="customers">
+  <tr>
+    <th>Student Name</th>
+    <th>Subject Info</th>
+    <th>Location</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Date</th>
+    <th>Option</th>
+  </tr>
+  {% for event in events %}
+  <tr>
+    <td>{{ event.name }}</td>
+    <td>{{ event.info }}</td>
+    <td>{{ event.location }}</td>
+    <td>{{ event.start_time }}</td>
+    <td>{{ event.end_time }}</td>
+    <td>{{ event.date }}</td>
+    <td><form action="{% url 'delete' pk=event.id %}" method="POST">
+  	{% csrf_token %}
+  	<button type="submit">DELETE</button>
+    </form></td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
