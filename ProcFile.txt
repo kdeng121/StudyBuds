@@ -1,1 +1,1 @@
-web: gunicorn studybuds.wsgi --log-file -
+web: gunicorn mysite.wsgi --log-file -
