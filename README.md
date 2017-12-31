@@ -1,6 +1,7 @@
-# catalyst-project-f2017
+# StudyBuds - Webapp for Peer Learning
+Link: https://studybuds.herokuapp.com/studygroups/
 
-## Installation
+## To run locally:
 0. Install django
 1. Install postgres - [guide](https://www.techrepublic.com/blog/diy-it-guy/diy-a-postgresql-database-server-setup-anyone-can-handle/)
 2. ~/mysite$ python3 manage.py makemigrations && python3 manage.py migrate
