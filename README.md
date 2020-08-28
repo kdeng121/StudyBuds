@@ -1,5 +1,10 @@
 # StudyBuds - Webapp for Peer Learning
-Link: https://studybuds.herokuapp.com/studygroups/
+
+## Description
+StudyBuds is a web application that allows users to create, view, and search study groups. It aims to make studying in college more interactive and fun! Developed in Python (Django) and uses a PostgreSQL database.
+
+## Demo
+https://studybuds.herokuapp.com/studygroups/
 
 ## To run locally:
 0. Install django
